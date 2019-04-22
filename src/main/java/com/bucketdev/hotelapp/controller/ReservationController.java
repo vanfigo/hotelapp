@@ -21,9 +21,24 @@ public class ReservationController {
         return new ResponseEntity<>(this.service.findAll(), HttpStatus.OK);
     }
 
+    @PostMapping("/filter")
+    public ResponseEntity<List<ReservationDTO>> filter(@RequestBody ReservationDTO dto) {
+        return new ResponseEntity<>(this.service.filter(dto), HttpStatus.OK);
+    }
+
     @RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT})
     public ResponseEntity<ReservationDTO> upsert(@RequestBody ReservationDTO dto) {
         return new ResponseEntity<>(this.service.save(dto), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}/checkIn")
+    public ResponseEntity<ReservationDTO> checkIn(@PathVariable long id) {
+        return new ResponseEntity<>(this.service.checkIn(id), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}/checkOut")
+    public ResponseEntity<ReservationDTO> checkOut(@PathVariable long id) {
+        return new ResponseEntity<>(this.service.checkOut(id), HttpStatus.CREATED);
     }
 
 }

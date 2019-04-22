@@ -25,7 +25,11 @@ public class ReservationDTO implements Serializable {
     private Calendar endDate;
     @JsonFormat(timezone = "GMT-06:00")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date creationDate;
+    private Calendar creationDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar checkInDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar checkOutDate;
     private int people;
     private Reservation.Status status;
     private RoomDTO room;

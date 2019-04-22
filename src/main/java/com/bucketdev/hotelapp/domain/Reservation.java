@@ -35,7 +35,15 @@ public class Reservation {
 
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date creationDate;
+    private Calendar creationDate;
+
+    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar checkInDate;
+
+    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar checkOutDate;
 
     @Column
     private int people;
@@ -66,6 +74,8 @@ public class Reservation {
         dto.setEndDate(endDate);
         dto.setPeople(people);
         dto.setCreationDate(creationDate);
+        dto.setCheckInDate(checkInDate);
+        dto.setCheckOutDate(checkOutDate);
         dto.setStatus(status);
         return dto;
     }

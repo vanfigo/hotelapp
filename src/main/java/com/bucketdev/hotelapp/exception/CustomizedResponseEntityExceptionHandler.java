@@ -1,8 +1,9 @@
 package com.bucketdev.hotelapp.exception;
 
 import com.bucketdev.hotelapp.exception.bed.BedNotFoundException;
-import com.bucketdev.hotelapp.exception.bed.RoomNotFoundException;
-import com.bucketdev.hotelapp.exception.bed.RoomPhotoNotFoundException;
+import com.bucketdev.hotelapp.exception.reservation.ReservationNotFoundException;
+import com.bucketdev.hotelapp.exception.room.RoomNotFoundException;
+import com.bucketdev.hotelapp.exception.roomPhoto.RoomPhotoNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -40,6 +41,13 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
     @ExceptionHandler(RoomPhotoNotFoundException.class)
     public final ResponseEntity<Object> handleRoomPhotoNotFoundException(Exception ex, WebRequest request) throws Exception {
+        ExceptionResponse exceptionResponse =
+                new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ReservationNotFoundException.class)
+    public final ResponseEntity<Object> handleReservationNotFoundException(Exception ex, WebRequest request) throws Exception {
         ExceptionResponse exceptionResponse =
                 new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);

@@ -17,12 +17,6 @@ public interface RoomReservationRepository extends JpaRepository<RoomReservation
             "WHERE (r IS NULL OR r.startDate <> CURRENT_DATE)")
     List<RoomReservation> findAll();
 
-    /*@Query("SELECT DISTINCT rr FROM RoomReservation rr " +
-            "LEFT JOIN FETCH rr.reservations r " +
-            "WHERE r IS NULL OR " +
-            "r.startDate NOT BETWEEN :from AND :to AND " +
-            "r.endDate NOT BETWEEN :from AND :to AND " +
-            "r IS NULL")*/
     @Query("SELECT r " +
             "FROM RoomReservation r " +
             "WHERE r.id NOT IN (" +

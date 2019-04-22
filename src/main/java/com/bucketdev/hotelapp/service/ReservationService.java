@@ -9,4 +9,10 @@ public interface ReservationService {
     ReservationDTO save(ReservationDTO reservationDTO);
 
     List<ReservationDTO> findAll();
+
+    List<ReservationDTO> filter(ReservationDTO dto);
+
+    ReservationDTO checkIn(long id);
+
+    ReservationDTO checkOut(long id);
 }
